@@ -16,7 +16,7 @@
 
   <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
-      <a class="navbar-brand" href="index.html">CRUD Agenda</a>
+      <a class="navbar-brand" href="index.html">Alibabas Tech Garage</a>
       <button
         class="navbar-toggler"
         type="button"
@@ -48,24 +48,24 @@
           <h1>Backoffice</h1>
           <form onsubmit="onFormSubmit(event)" id="event-form">
             <div class="form-group">
-              <label for="event-name">Event Name</label>
+              <label for="event-name">Product Name</label>
               <input type="text" class="form-control" id="event-name" />
             </div>
             <div class="form-group">
-              <label for="event-description">Event Description</label>
-              <textarea class="form-control" id="event-description"></textarea>
+              <label for="event-description">Brand</label>
+              <textarea class="form-control" id="event-brand"></textarea>
             </div>
             <div class="form-group">
-              <label for="event-price">Event Price</label>
+              <label for="event-price">Image</label>
+              <input type="url" class="form-control" id="event-image" />
+            </div>
+            <div class="form-group">
+              <label for="event-time">Price</label>
               <input type="number" class="form-control" id="event-price" />
             </div>
             <div class="form-group">
-              <label for="event-time">Event Date & Time</label>
-              <input
-                type="datetime-local"
-                class="form-control"
-                id="event-time"
-              />
+              <label for="event-time">Description</label>
+              <input type="text" class="form-control" id="event-description" />
             </div>
             <button id="submit-button" type="submit" class="btn btn-primary">
               Create Event
@@ -129,7 +129,7 @@
           name: document.querySelector("#event-name").value,
           description: document.querySelector("#event-description").value,
           price: document.querySelector("#event-price").value,
-          time: document.querySelector("#event-time").value,
+          time: document.querySelector("#event-brand").value,
         };
 
         const options = {
@@ -148,10 +148,20 @@
           // to the catch block, and we will execute the code there.
 
           const endpoint = appointmentId
-            ? `https://striveschool-api.herokuapp.com/api/agenda/${appointmentId}`
-            : "https://striveschool-api.herokuapp.com/api/agenda/";
+            ? `https://striveschool-api.herokuapp.com/api/product/${appointmentId}`
+            : "https://striveschool-api.herokuapp.com/api/product/";
 
-          const response = await fetch(endpoint, options);
+          const response = await fetch(
+            "https://striveschool-api.herokuapp.com/api/product/",
+            {
+              method: "post",
+              headers: {
+                Authorization:
+                  "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MzZjZThhYWQ0YmUzZDAwMTU4NDVmYzUiLCJpYXQiOjE2NjgwODYwNzksImV4cCI6MTY2OTI5NTY3OX0.Vigxv6fEZm51naEqXEcH3ohBal7DOXmR71X35glLs7U",
+              },
+            }
+          );
+
           // If there is an error here, when fetching...
           // This code will not go forward -> we jump to the catch block.
 

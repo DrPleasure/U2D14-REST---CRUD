@@ -56,7 +56,11 @@
 
     async function getAppointment() {
 
-      const response = await fetch(`https://striveschool-api.herokuapp.com/api/agenda/${appointmentId}`)
+      const response = await fetch(`https://striveschool-api.herokuapp.com/api/product/${appointmentId}`,{
+headers: {
+"Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MzZjZThhYWQ0YmUzZDAwMTU4NDVmYzUiLCJpYXQiOjE2NjgwODYwNzksImV4cCI6MTY2OTI5NTY3OX0.Vigxv6fEZm51naEqXEcH3ohBal7DOXmR71X35glLs7U"
+}
+}) 
       const appointment = await response.json()
       return appointment
     }
@@ -88,10 +92,12 @@
 
         if (confirm("Do you really want to delete this event?")) {
           const options = { method: 'DELETE' }
-          const response = await fetch(
-            `https://striveschool-api.herokuapp.com/api/agenda/${appointmentId}`,
-            options
-          )
+          const response = await fetch(`https://striveschool-api.herokuapp.com/api/product/${appointmentId}`,{
+headers: {
+"Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MzZjZThhYWQ0YmUzZDAwMTU4NDVmYzUiLCJpYXQiOjE2NjgwODYwNzksImV4cCI6MTY2OTI5NTY3OX0.Vigxv6fEZm51naEqXEcH3ohBal7DOXmR71X35glLs7U"
+}
+}) 
+          
           if (response.ok) {
             // This is like an a tag, but in JavaScript
             window.location.assign('index.html')
